@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .ani {
+      width: 500px;
+      height: 300px;
+      margin: 100px auto;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,1);
+      background-position: center;
+      -webkit-animation: loops 10s infinite;
+    }
+    /*Safari,chrome*/
+    @-webkit-keyframes loops {
+      0%{background: url("images/1.jpg") no-repeat;}
+      25%{background: url("images/2.jpg")no-repeat;}
+      50%{background: url("images/3.jpg")no-repeat;}
+      75%{background: url("images/4.jpg")no-repeat;}
+      100%{background: url("images/1.jpg")no-repeat;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="ani">
+  <h2>呼吸</h2>
+</div>
+</body>
+</html>
