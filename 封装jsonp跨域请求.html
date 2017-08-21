@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<script>
+  //请求地址接口格式eg: http://v.showji.com/Locating/showji.com2016234999234.aspx
+  //?m=13333333333&output=json&callback=JSON_CALLBACK&timestamp=' + (new Date()-0)
+  //params: {},对象格式
+  function jsonp(url,params,callback){
+    //拼接url
+    url+='?';
+    for(var k in params){
+      url+=k+'='+params[k]+'&';
+    }
+    var callbackName = 'jsonp_'+(new Date()-0);
+    url+='callback='+callbackName;
+    console.log(url);
+
+    //全局函数接收
+    window[callbackName] = function(data){
+      callback(data);
+
+      //删除添加的window属性
+      delete window[callbackName];
+      //移除script标签
+      document.head.removeChild(script);
+    }
+
+    //动态创建script标签并放入页面内
+    var script = document.createElement('script');
+    script.src = url;
+    document.head.appendChild(script);
+
+  };
+
+  //调用
+  jsonp('http://v.showji.com/Locating/showji.com2016234999234.aspx',{
+    m:13333333333,
+    output:'json'
+  },function(data){
+    //获取到接口返回的数据
+    console.log(data);
+  });
+</script>
+</body>
+</html>
